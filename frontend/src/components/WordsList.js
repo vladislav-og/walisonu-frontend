@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import {getAllWords} from '../utils/requests'
+import 'bootstrap/dist/css/bootstrap.css';
+import Container from "react-bootstrap/Container";
 
 //import * as requests from '../utils/requests';
 
@@ -29,14 +31,13 @@ class WordsList extends Component {
 
     render() {
         return (
-            <div>
-                <ul>
-                    {this.state.words.map(item => (
-                        <li>{item.name}</li>
-                    ))}
 
-                </ul>
-            </div>
+            <Container>
+                {this.state.words.map(item => (
+                    <p>{item.name}</p>
+                ))}
+            </Container>
+
         );
     };
 

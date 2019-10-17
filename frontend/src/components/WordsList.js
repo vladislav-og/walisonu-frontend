@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {getAllWords} from '../utils/requests'
+import {getAllWords, getWord} from '../utils/wordRequests'
 import 'bootstrap/dist/css/bootstrap.css';
 import Container from "react-bootstrap/Container";
 
@@ -20,13 +20,20 @@ class WordsList extends Component {
     }*/
 
     componentDidMount() {
-        const config = {"Access-Control-Allow-Origin": "*"}
-        getAllWords(config, (res) => {
+        const config = {"Access-Control-Allow-Origin": "*"};
+        getAllWords(config, res => {
             this.setState({words: res.data});
         }, (err) => {
             //error
             alert(err);
         });
+        // getWord(4,config, res => {
+        //     console.log(res)
+        //     this.setState({words: res.data});
+        // }, (err) => {
+        //     //error
+        //     alert(err);
+        // });
     };
 
     render() {

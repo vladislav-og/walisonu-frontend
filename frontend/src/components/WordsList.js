@@ -14,11 +14,6 @@ class WordsList extends Component {
         };
     };
 
-
-    /*componentDidMount() {
-        getAllWords();
-    }*/
-
     componentDidMount() {
         const config = {"Access-Control-Allow-Origin": "*"};
         getAllWords(config, res => {

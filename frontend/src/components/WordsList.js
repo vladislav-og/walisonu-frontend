@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import axios from 'axios';
+import React, {Component} from "react";
 import {getAllWords} from '../utils/requests'
+
+//import * as requests from '../utils/requests';
 
 class WordsList extends Component {
 
@@ -9,20 +10,36 @@ class WordsList extends Component {
         this.state = {
             words: [],
         };
+    };
 
-    }
+
+    /*componentDidMount() {
+        getAllWords();
+    }*/
 
     componentDidMount() {
-        getAllWords();
-    }
+        const config = {"Access-Control-Allow-Origin": "*"}
+        getAllWords(config, (res) => {
+            this.setState({words: res.data});
+        }, (err) => {
+            //error
+            alert(err);
+        });
+    };
 
     render() {
         return (
             <div>
-                Hello
+                <ul>
+                    {this.state.words.map(item => (
+                        <li>{item.name}</li>
+                    ))}
+
+                </ul>
             </div>
-        )
-    }
+        );
+    };
+
 }
 
 export default (WordsList);

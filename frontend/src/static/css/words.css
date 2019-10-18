@@ -1,0 +1,15 @@
+.word-card {
+    font-size: 3rem;
+    margin: .5rem;
+}
+
+.word ,
+.show-synonym {
+    margin: .5rem;
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.show-synonym {
+    /*font-size: 2rem;*/
+}

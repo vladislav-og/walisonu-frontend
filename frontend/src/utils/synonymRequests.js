@@ -17,7 +17,7 @@ export function getAllSynonyms(config, callback, errorCallback){
         })
 }
 
-export function getWordSynonym(id, config, callback, errorCallback){
+export function getWordSynonyms(id, config, callback, errorCallback){
 
     axios.get(`http://127.0.0.1:8000/api/synonyms/${id}`, config)
         .then(res => {

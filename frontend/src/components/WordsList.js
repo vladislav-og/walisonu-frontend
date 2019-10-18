@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import {getAllWords, getWord} from '../utils/wordRequests'
+import {getWordSynonyms} from '../utils/synonymRequests'
 import 'bootstrap/dist/css/bootstrap.css';
-import Container from "react-bootstrap/Container";
-
-//import * as requests from '../utils/requests';
+import {Container, Badge, Button} from "react-bootstrap";
+import "../static/css/words.css"
+import Word from "./Word"
 
 class WordsList extends Component {
+    config = {"Access-Control-Allow-Origin": "*"};
 
     constructor(props) {
         super(props);
@@ -15,20 +17,22 @@ class WordsList extends Component {
     };
 
     componentDidMount() {
-        const config = {"Access-Control-Allow-Origin": "*"};
-        getAllWords(config, res => {
+        getAllWords(this.config, res => {
             this.setState({words: res.data});
         }, (err) => {
             //error
             alert(err);
         });
-        // getWord(4,config, res => {
-        //     console.log(res)
-        //     this.setState({words: res.data});
-        // }, (err) => {
-        //     //error
-        //     alert(err);
-        // });
+    };
+
+    onClick = () => {
+        getWordSynonyms(4, this.config, res => {
+            console.log(res)
+            // this.setState({words: res.data});
+        }, (err) => {
+            //error
+            alert(err);
+        });
     };
 
     render() {
@@ -36,7 +40,9 @@ class WordsList extends Component {
 
             <Container>
                 {this.state.words.map(item => (
-                    <p>{item.name}</p>
+                    <div key={item.word_id} className="word-card">
+                        <Word word={item}/>
+                    </div>
                 ))}
             </Container>
 

@@ -10,7 +10,7 @@ class NavbarComp extends Component {
     render() {
         return (
             <Navbar bg="primary" variant="dark">
-                <Link to="/words"><Navbar.Brand>Homepage</Navbar.Brand></Link>
+                <Link to="/"><Navbar.Brand>Homepage</Navbar.Brand></Link>
                 <Nav className="mr-auto">
                     <Link to="/users"><Navbar.Brand>Users</Navbar.Brand></Link>
                     <Link to="/synonyms"><Navbar.Brand>Synonyms</Navbar.Brand></Link>

@@ -25,27 +25,18 @@ class WordsList extends Component {
         });
     };
 
-    onClick = () => {
-        getWordSynonyms(4, this.config, res => {
-            console.log(res)
-            // this.setState({words: res.data});
-        }, (err) => {
-            //error
-            alert(err);
-        });
-    };
+
 
     render() {
-        return (
 
+        return (
             <Container>
                 {this.state.words.map(item => (
-                    <div key={item.word_id} className="word-card">
-                        <Word word={item}/>
-                    </div>
+                        <div key={item.word_id} className="word-card">
+                            <Word word={item}/>
+                        </div>
                 ))}
             </Container>
-
         );
     };
 

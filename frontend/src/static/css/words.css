@@ -1,14 +1,26 @@
 .word-card {
     font-size: 3rem;
     margin: .5rem;
+    height: 40%;
 }
 
-.word ,
-.show-synonym {
-    margin: .5rem;
+.card,
+.synonyms {
     display: inline-block;
+
+}
+
+.synonyms {
+    position: relative;
+    padding: 1.25rem;
     vertical-align: baseline;
 }
+/*.word ,*/
+/*.show-synonym {*/
+/*    margin: .5rem;*/
+/*    display: inline-block;*/
+/*    vertical-align: baseline;*/
+/*}*/
 
 .show-synonym {
     /*font-size: 2rem;*/

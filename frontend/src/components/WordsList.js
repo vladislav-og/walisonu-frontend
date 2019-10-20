@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import {getAllWords, getWord} from '../utils/wordRequests'
+import {getAllWords} from '../utils/wordRequests'
 import 'bootstrap/dist/css/bootstrap.css';
-import {Container, Badge, Button} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import "../static/css/words.css"
 import Word from "./Word"
 
@@ -29,7 +29,7 @@ class WordsList extends Component {
     render() {
 
         return (
-            <Container>
+            <Container style={{width: '50rem'}}>
                 {this.state.words.map(item => (
                         <div key={item.word_id} className="word-card">
                             <Word word={item}/>

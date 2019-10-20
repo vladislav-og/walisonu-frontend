@@ -50,7 +50,7 @@ class Word extends Component {
         if (this.state.show === false) {
             return (
                 <Fragment>
-                    <Card style={{width: '40rem'}}>
+                    <Card>
                         <Card.Body>
                             <Card.Title>{this.props.word.name}</Card.Title>
                             <Button variant="primary" onClick={this.onClick}>See synonyms</Button>
@@ -61,7 +61,7 @@ class Word extends Component {
         }
         return (
             <Fragment>
-                <Card style={{width: '40rem'}}>
+                <Card>
                     <Card.Header><Card.Title>{this.props.word.name}</Card.Title></Card.Header>
                     <ListGroup>
                         {this.state.synonyms.map(item => (

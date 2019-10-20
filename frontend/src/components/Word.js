@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import {Card, Button} from "react-bootstrap";
+import {Card, Button, Container, Row, Col, ListGroup} from "react-bootstrap";
 import "../static/css/words.css"
 import {getWordSynonyms} from "../utils/synonymRequests";
 
@@ -25,12 +25,11 @@ class Word extends Component {
     };
 
 
-
     render() {
         if (this.state.show === false) {
             return (
                 <Fragment>
-                    <Card style={{ width: '18rem' }}>
+                    <Card style={{width: '40rem'}}>
                         <Card.Body>
                             <Card.Title>{this.props.word.name}</Card.Title>
                             <Button variant="primary" onClick={this.onClick}>See synonyms</Button>
@@ -39,20 +38,15 @@ class Word extends Component {
                 </Fragment>
             )
         }
-        // TODO create separate component for synonyms
-        const synonyms = this.state.synonyms.map(item => (
-                <div key={item.synonym_id} className="synonyms">{item.synonym}</div>
-            ));
         return (
-            <Fragment>
-                <Card style={{ width: '18rem' }}>
-                    <Card.Body>
-                        <Card.Title>{this.props.word.name}</Card.Title>
-                        <Button variant="danger" onClick={this.onClick}>Close synonyms</Button>
-                    </Card.Body>
-                </Card>
-                {synonyms}
-            </Fragment>
+            <Card style={{width: '40rem'}}>
+                <Card.Header><Card.Title>{this.props.word.name}</Card.Title></Card.Header>
+                <ListGroup>
+                    {this.state.synonyms.map(item => (
+                        <ListGroup.Item key={item.synonym_id}>{item.synonym}</ListGroup.Item>))}
+                </ListGroup>
+                <Button variant="danger" onClick={this.onClick}>Close synonyms</Button>
+            </Card>
         )
     }
 }

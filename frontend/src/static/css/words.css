@@ -1,19 +1,13 @@
 .word-card {
-    font-size: 3rem;
     margin: .5rem;
     height: 40%;
 }
 
-.card,
-.synonyms {
-    display: inline-block;
-
-}
 
 .synonyms {
     position: relative;
     padding: 1.25rem;
-    vertical-align: baseline;
+    horizontal-align: baseline;
 }
 /*.word ,*/
 /*.show-synonym {*/

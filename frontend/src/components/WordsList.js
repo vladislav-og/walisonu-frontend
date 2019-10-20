@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {getAllWords, getWord} from '../utils/wordRequests'
-import {getWordSynonyms} from '../utils/synonymRequests'
 import 'bootstrap/dist/css/bootstrap.css';
 import {Container, Badge, Button} from "react-bootstrap";
 import "../static/css/words.css"

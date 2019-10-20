@@ -1,16 +1,18 @@
 import React, {Component, Fragment} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import {Card, Button, Container, Row, Col, ListGroup} from "react-bootstrap";
+import {Card, Button, Row, Col, ListGroup, Form} from "react-bootstrap";
 import "../static/css/words.css"
-import {getWordSynonyms} from "../utils/synonymRequests";
+import {getWordSynonyms, addWordSynonym} from "../utils/synonymRequests";
+
 
 class Word extends Component {
     constructor(props) {
         super(props);
         this.state = {
             show: false,
-            synonyms: []
-        }
+            synonyms: [],
+            inputSynonym: ''
+        };
     };
 
     onClick = () => {
@@ -24,6 +26,25 @@ class Word extends Component {
         this.setState({show: !this.state.show});
     };
 
+    addSynonym = (e) => {
+        addWordSynonym(this.props.word, this.state.inputSynonym, this.config, res => {
+            //TODO: Probably not the best way....
+            this.onClick();
+            this.setState({show: !this.state.show});
+
+        }, (err) => {
+            //error
+            alert(err);
+        });
+        this.setState({inputSynonym: ''});
+    };
+
+
+    updateInputValue(e) {
+        this.setState({
+            inputSynonym: e.target.value
+        });
+    };
 
     render() {
         if (this.state.show === false) {
@@ -39,14 +60,30 @@ class Word extends Component {
             )
         }
         return (
-            <Card style={{width: '40rem'}}>
-                <Card.Header><Card.Title>{this.props.word.name}</Card.Title></Card.Header>
-                <ListGroup>
-                    {this.state.synonyms.map(item => (
-                        <ListGroup.Item key={item.synonym_id}>{item.synonym}</ListGroup.Item>))}
-                </ListGroup>
-                <Button variant="danger" onClick={this.onClick}>Close synonyms</Button>
-            </Card>
+            <Fragment>
+                <Card style={{width: '40rem'}}>
+                    <Card.Header><Card.Title>{this.props.word.name}</Card.Title></Card.Header>
+                    <ListGroup>
+                        {this.state.synonyms.map(item => (
+                            <ListGroup.Item key={item.synonym_id}>{item.synonym}</ListGroup.Item>))}
+                        <ListGroup.Item>
+                            <Form>
+                                <Form.Group as={Row}>
+                                    <Col sm="6">
+                                        <Form.Control value={this.state.inputSynonym}
+                                                      onChange={e => this.updateInputValue(e)}
+                                                      type="text" placeholder="Enter synonym"/>
+                                    </Col>
+                                    <Col>
+                                        <Button variant="primary" onClick={this.addSynonym}>Submit</Button>
+                                    </Col>
+                                </Form.Group>
+                            </Form>
+                        </ListGroup.Item>
+                    </ListGroup>
+                    <Button variant="danger" onClick={this.onClick}>Close synonyms</Button>
+                </Card>
+            </Fragment>
         )
     }
 }

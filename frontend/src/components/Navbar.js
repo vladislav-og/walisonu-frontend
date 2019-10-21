@@ -10,7 +10,7 @@ class NavbarComp extends Component {
     render() {
         return (
             <Navbar bg="primary" variant="dark">
-                <Link to="/"><Navbar.Brand>Homepage</Navbar.Brand></Link>
+                <Link to="/"><Navbar.Brand>Wali sõnu!</Navbar.Brand></Link>
             </Navbar>
         )
 }}

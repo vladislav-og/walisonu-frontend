@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import {Card, Button, Row, Col, ListGroup, Form} from "react-bootstrap";
+import {Card, Button, Form, Row, Col, ListGroup} from "react-bootstrap";
+import Synonym from "./Synonym"
 import "../static/css/words.css"
 import {getWordSynonyms, addWordSynonym} from "../utils/synonymRequests";
 
@@ -11,14 +12,14 @@ class Word extends Component {
         this.state = {
             show: false,
             synonyms: [],
-            inputSynonym: ''
+            inputSynonym: '',
         };
     };
 
     onClick = () => {
         getWordSynonyms(this.props.word.word_id, this.config, res => {
             this.setState({synonyms: res.data});
-            console.log(this.state.synonyms)
+            // console.log(this.state.synonyms)
         }, (err) => {
             //error
             alert(err);
@@ -63,24 +64,21 @@ class Word extends Component {
             <Fragment>
                 <Card>
                     <Card.Header><Card.Title>{this.props.word.name}</Card.Title></Card.Header>
-                    <ListGroup>
-                        {this.state.synonyms.map(item => (
-                            <ListGroup.Item key={item.synonym_id}>{item.synonym}</ListGroup.Item>))}
-                        <ListGroup.Item>
-                            <Form>
-                                <Form.Group as={Row}>
-                                    <Col sm="6">
-                                        <Form.Control value={this.state.inputSynonym}
-                                                      onChange={e => this.updateInputValue(e)}
-                                                      type="text" placeholder="Enter synonym"/>
-                                    </Col>
-                                    <Col>
-                                        <Button variant="primary" onClick={this.addSynonym}>Submit</Button>
-                                    </Col>
-                                </Form.Group>
-                            </Form>
-                        </ListGroup.Item>
-                    </ListGroup>
+                    <Synonym synonyms={this.state.synonyms}/>
+                    <ListGroup.Item>
+                        <Form>
+                            <Form.Group as={Row}>
+                                <Col sm="6">
+                                    <Form.Control value={this.state.inputSynonym}
+                                                  onChange={e => this.updateInputValue(e)}
+                                                  type="text" placeholder="Enter synonym"/>
+                                </Col>
+                                <Col>
+                                    <Button variant="primary" onClick={this.addSynonym}>Submit</Button>
+                                </Col>
+                            </Form.Group>
+                        </Form>
+                    </ListGroup.Item>
                     <Button variant="danger" onClick={this.onClick}>Close synonyms</Button>
                 </Card>
             </Fragment>

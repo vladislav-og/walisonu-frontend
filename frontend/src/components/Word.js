@@ -28,6 +28,7 @@ class Word extends Component {
     };
 
     addSynonym = (e) => {
+        e.preventDefault();
         addWordSynonym(this.props.word, this.state.inputSynonym, this.config, res => {
             //TODO: Probably not the best way....
             this.onClick();
@@ -74,7 +75,7 @@ class Word extends Component {
                                                   type="text" placeholder="Enter synonym"/>
                                 </Col>
                                 <Col>
-                                    <Button variant="primary" onClick={this.addSynonym}>Submit</Button>
+                                    <Button type="submit" variant="primary" onClick={this.addSynonym}>Submit</Button>
                                 </Col>
                             </Form.Group>
                         </Form>

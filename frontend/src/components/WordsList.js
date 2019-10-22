@@ -36,6 +36,7 @@ class WordsList extends Component {
     };
 
     addWord= (e) => {
+        e.preventDefault();
         addWord(this.state.inputWord, this.config, res => {
             this.getWords();
         }, (err) => {
@@ -49,7 +50,7 @@ class WordsList extends Component {
 
         return (
             <Container style={{width: '50rem'}}>
-                <Form style={{paddingTop: '2rem'}}>
+                <Form style={{paddingTop: '2rem'}} onSubmit={this.addWord}>
                     <Form.Group as={Row}>
                         <Col sm="6">
                             <Form.Control value={this.state.inputWord}
@@ -57,7 +58,7 @@ class WordsList extends Component {
                                           type="text" placeholder="Enter new word"/>
                         </Col>
                         <Col>
-                            <Button variant="primary" onClick={this.addWord}>Submit</Button>
+                            <Button type="submit" variant="primary" onClick={this.addWord}>Submit</Button>
                         </Col>
                     </Form.Group>
                 </Form>

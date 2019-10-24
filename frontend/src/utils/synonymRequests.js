@@ -37,7 +37,7 @@ export function getWordSynonyms(id, config, callback, errorCallback){
 export function addWordSynonym(word, synonym, config, callback, errorCallback){
 
     axios.post(`http://127.0.0.1:8000/api/synonyms/`,
-        {word: word,
+        {word_id: word,
         synonym: synonym,
         isActive: true}, config)
         .then(res => {

@@ -29,7 +29,7 @@ class Word extends Component {
 
     addSynonym = (e) => {
         e.preventDefault();
-        addWordSynonym(this.props.word, this.state.inputSynonym, this.config, res => {
+        addWordSynonym(this.props.word.word_id, this.state.inputSynonym, this.config, res => {
             //TODO: Probably not the best way....
             this.onClick();
             this.setState({show: !this.state.show});

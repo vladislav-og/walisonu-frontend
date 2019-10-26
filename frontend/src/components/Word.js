@@ -48,9 +48,11 @@ class Word extends Component {
             let index = this.state.synonyms.findIndex(function(item){
                 return item.synonym_id === res;
             });
+            this.state.synonyms.splice(index, 1);
             this.setState({
-                synonyms: [...this.state.synonyms.splice(index, 1)]
+                synonyms: [...this.state.synonyms]
             })
+
         }, (err) => {
             //error
             alert(err);

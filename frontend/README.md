@@ -1,8 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and configured using webpack.
 
+## Getting Started
+
 ### Before Start
 
 Inside frontend directory run **npm install**
+
 ### Advanced Configuration
 
 Webpack is added for better control over configuration.

@@ -1,9 +1,9 @@
 import React, {Component, Fragment} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import {Card, Button, Form, Row, Col, ListGroup} from "react-bootstrap";
-import Synonym from "./Synonym"
+import Synonym from "./SynonymsList"
 import "../static/css/words.css"
-import {getWordSynonyms, addWordSynonym, deleteWordSynonym} from "../utils/synonymRequests";
+import {getWordSynonyms, addWordSynonym, deleteWordSynonym, updateSynonym} from "../utils/synonymRequests";
 
 
 class Word extends Component {
@@ -26,6 +26,10 @@ class Word extends Component {
             //error
             alert(err);
         });
+        this.toggleView();
+    };
+
+    toggleView = () => {
         this.setState({show: !this.state.show});
     };
 
@@ -59,11 +63,31 @@ class Word extends Component {
         });
     };
 
+    updateSynonym = (id, synonym) => {
+        updateSynonym(id, this.props.word.word_id, synonym, res => {
+            let index = this.state.synonyms.findIndex(function(item){
+                return item.synonym_id === id;
+            });
+
+            this.state.synonyms[index] = {
+                "synonym_id": res.data.id,
+                "word_id": res.data.word_id,
+                "synonym": res.data.synonym,
+                "user_id": res.data.user_id,
+                "active": res.data.active,
+            };
+            this.setState({
+                synonyms: [...this.state.synonyms]
+            })
+        })
+    };
+
     updateInputValue(e) {
         this.setState({
             inputSynonym: e.target.value
         });
     };
+
 
     render() {
         if (this.state.show === false) {
@@ -82,7 +106,7 @@ class Word extends Component {
             <Fragment>
                 <Card>
                     <Card.Header><Card.Title>{this.props.word.name}</Card.Title></Card.Header>
-                    <Synonym synonyms={this.state.synonyms} deleteSynonym={this.deleteSynonym}/>
+                    <Synonym synonyms={this.state.synonyms} deleteSynonym={this.deleteSynonym} updateSynonym={this.updateSynonym}/>
                     <ListGroup.Item>
                         <Form>
                             <Form.Group as={Row}>
@@ -97,7 +121,7 @@ class Word extends Component {
                             </Form.Group>
                         </Form>
                     </ListGroup.Item>
-                    <Button variant="danger" onClick={this.onClick}>Close synonyms</Button>
+                    <Button variant="danger" onClick={this.toggleView}>Close synonyms</Button>
                 </Card>
             </Fragment>
         )

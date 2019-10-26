@@ -70,3 +70,24 @@ export function deleteWordSynonym(synonym_id, callback, errorCallback){
             }
         })
 }
+
+export function updateSynonym(synonym_id, word_id, synonym, callback, errorCallback){
+
+    axios.put(`http://127.0.0.1:8000/api/synonyms/${synonym_id}`,
+        {
+            "id": synonym_id,
+            "word_id": word_id,
+            "synonym": synonym
+        })
+        .then(res => {
+
+            if(callback != null){
+                callback(res);
+            }
+        })
+        .catch(err => {
+            if(errorCallback != null){
+                errorCallback(err);
+            }
+        })
+}

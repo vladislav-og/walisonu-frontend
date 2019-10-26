@@ -96,7 +96,7 @@ class Word extends Component {
                 <Fragment>
                     <Card>
                         <Card.Body>
-                            <Card.Title>{this.props.word.name}</Card.Title>
+                            <Card.Title>{this.props.word.name}<Button style={{float: "inline-end"}} variant="danger" onClick={this.props.doWordDelete}>Delete</Button></Card.Title>
                             <Button variant="primary" onClick={this.onClick}>See synonyms</Button>
                         </Card.Body>
                     </Card>

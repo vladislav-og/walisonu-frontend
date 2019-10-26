@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {getAllWords, addWord} from '../utils/wordRequests'
+import {getAllWords, addWord, deleteWord} from '../utils/wordRequests'
 import 'bootstrap/dist/css/bootstrap.css';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import "../static/css/words.css"
@@ -22,6 +22,7 @@ class WordsList extends Component {
 
     getWords = (e) => {
         getAllWords(this.config, res => {
+            console.log('get all new words');
             this.setState({words: res.data});
         }, (err) => {
             //error
@@ -47,6 +48,15 @@ class WordsList extends Component {
         this.setState({inputWord: ''});
     };
 
+    handleWordDelete = (id) => {
+        deleteWord(id, res => {
+            this.getWords();
+        }, (err) => {
+            //error
+            alert(err);
+        });
+    };
+
     render() {
 
         return (
@@ -65,7 +75,7 @@ class WordsList extends Component {
                 </Form>
                 {this.state.words.map(item => (
                         <div key={item.word_id} className="word-card">
-                            <Word word={item}/>
+                            <Word doWordDelete={() => this.handleWordDelete(item.word_id)} word={item}/>
                         </div>
                 ))}
             </Container>

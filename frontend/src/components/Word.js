@@ -3,10 +3,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Card, Button, Form, Row, Col, ListGroup} from "react-bootstrap";
 import Synonym from "./Synonym"
 import "../static/css/words.css"
-import {getWordSynonyms, addWordSynonym} from "../utils/synonymRequests";
+import {getWordSynonyms, addWordSynonym, deleteWordSynonym} from "../utils/synonymRequests";
 
 
 class Word extends Component {
+    config = {"Access-Control-Allow-Origin": "*"};
+
     constructor(props) {
         super(props);
         this.state = {
@@ -41,6 +43,19 @@ class Word extends Component {
         this.setState({inputSynonym: ''});
     };
 
+    deleteSynonym = (id) => {
+        deleteWordSynonym(id,res => {
+            let index = this.state.synonyms.findIndex(function(item){
+                return item.synonym_id === res;
+            });
+            this.setState({
+                synonyms: [...this.state.synonyms.splice(index, 1)]
+            })
+        }, (err) => {
+            //error
+            alert(err);
+        });
+    };
 
     updateInputValue(e) {
         this.setState({
@@ -65,7 +80,7 @@ class Word extends Component {
             <Fragment>
                 <Card>
                     <Card.Header><Card.Title>{this.props.word.name}</Card.Title></Card.Header>
-                    <Synonym synonyms={this.state.synonyms}/>
+                    <Synonym synonyms={this.state.synonyms} deleteSynonym={this.deleteSynonym}/>
                     <ListGroup.Item>
                         <Form>
                             <Form.Group as={Row}>

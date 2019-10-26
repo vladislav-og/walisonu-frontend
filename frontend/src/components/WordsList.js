@@ -6,7 +6,7 @@ import "../static/css/words.css"
 import Word from "./Word"
 
 class WordsList extends Component {
-    config = {"Access-Control-Allow-Origin": "*"};
+    // config = {"Access-Control-Allow-Origin": "*"};
 
     constructor(props) {
         super(props);
@@ -20,7 +20,7 @@ class WordsList extends Component {
         this.getWords();
     };
 
-    getWords= (e) => {
+    getWords = (e) => {
         getAllWords(this.config, res => {
             this.setState({words: res.data});
         }, (err) => {

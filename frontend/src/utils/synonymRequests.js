@@ -1,4 +1,5 @@
 import axios from "axios";
+axios.defaults.headers.delete['Content-Type'] ='application/json';
 
 export function getAllSynonyms(config, callback, errorCallback){
     axios.get("http://127.0.0.1:8000/api/synonyms", config)
@@ -18,7 +19,6 @@ export function getAllSynonyms(config, callback, errorCallback){
 }
 
 export function getWordSynonyms(id, config, callback, errorCallback){
-
     axios.get(`http://127.0.0.1:8000/api/synonyms/${id}`, config)
         .then(res => {
             //do something
@@ -49,6 +49,23 @@ export function addWordSynonym(word_id, synonym, config, callback, errorCallback
         })
         .catch(err => {
             // catch error
+            if(errorCallback != null){
+                errorCallback(err);
+            }
+        })
+}
+
+export function deleteWordSynonym(synonym_id, callback, errorCallback){
+
+    axios.delete(`http://127.0.0.1:8000/api/synonyms/${synonym_id}`)
+        .then(res => {
+
+            if(callback != null){
+                callback(res);
+            }
+            callback(synonym_id);
+        })
+        .catch(err => {
             if(errorCallback != null){
                 errorCallback(err);
             }

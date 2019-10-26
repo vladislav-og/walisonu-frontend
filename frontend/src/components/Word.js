@@ -20,7 +20,7 @@ class Word extends Component {
 
     onClick = () => {
         getWordSynonyms(this.props.word.word_id, this.config, res => {
-            this.setState({synonyms: res.data});
+            this.setState({synonyms: res.data.sort((a,b) => (a.synonym_id > b.synonym_id) ? 1 : ((b.synonym_id > a.synonym_id) ? -1 : 0))});
             // console.log(this.state.synonyms)
         }, (err) => {
             //error

@@ -37,6 +37,7 @@ class WordsList extends Component {
 
     addWord= (e) => {
         e.preventDefault();
+        if (!this.state.inputWord) return
         addWord(this.state.inputWord, this.config, res => {
             this.getWords();
         }, (err) => {

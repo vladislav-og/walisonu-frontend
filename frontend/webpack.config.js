@@ -38,6 +38,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin([
             { from: './public/favicon.ico'},
+            { from: './public/favicon-side.png'},
             {from: './public/manifest.json'}, // <- your path to favicon
         ])]
 };

@@ -12,7 +12,7 @@ class NavbarComp extends Component {
         <Link to="/">
           <Navbar.Brand>
             <img
-              src="/src/static/images/favicon-side.png"
+              src="favicon-side.png"
               width="auto"
               height="40"
               className="d-inline-block align-top"

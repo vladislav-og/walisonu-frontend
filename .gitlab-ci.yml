@@ -17,6 +17,6 @@ deploy walisonu:
   tags:
     - words
   script:
-    - rm -rf /usr/share/nginx/html
-    - mkdir /usr/share/nginx/html
-    - mv frontend/build /usr/share/nginx/html
+    - rm -rf /home/gitlab-runner/public
+    - mkdir /home/gitlab-runner/public
+    - mv frontend/build /home/gitlab-runner/public

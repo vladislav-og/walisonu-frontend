@@ -2,18 +2,15 @@ stages:
   - build
   - deploy
 
-
-artifacts:
-  paths:
-    - frontend/build/
-cache:
-  paths:
-    - frontend/build/
-
-
 build walisonu:
   stage: build
   image: node:11-alpine
+  artifacts:
+    paths:
+      - frontend/build/
+  cache:
+    paths:
+      - frontend/build/
   tags:
     - words
   script:

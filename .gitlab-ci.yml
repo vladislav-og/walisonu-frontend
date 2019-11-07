@@ -1,5 +1,6 @@
 stages:
   - build
+  - deploy
 
 build walisonu:
   stage: build
@@ -10,6 +11,12 @@ build walisonu:
     - cd frontend
     - npm install
     - npm run build
+
+deploy walisonu:
+  stage: deploy
+  tags:
+    - words
+  script:
     - rm -rf /home/gitlab-runner/public
     - mkdir /home/gitlab-runner/public
     - mv build /home/gitlab-runner/public

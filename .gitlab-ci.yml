@@ -2,6 +2,15 @@ stages:
   - build
   - deploy
 
+
+artifacts:
+  paths:
+    - frontend/build/
+cache:
+  paths:
+    - frontend/build/
+
+
 build walisonu:
   stage: build
   image: node:11-alpine
@@ -18,8 +27,6 @@ deploy walisonu:
     - words
   script:
     - cd frontend
-    - npm install
-    - npm run build
     - rm -rf /home/gitlab-runner/public
     - mkdir /home/gitlab-runner/public
     - mv build /home/gitlab-runner/public

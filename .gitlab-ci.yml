@@ -1,6 +1,6 @@
 stages:
   - build
-  - deploya
+  - deploy
 
 build walisonu:
   stage: build

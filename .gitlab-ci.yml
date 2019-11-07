@@ -9,13 +9,14 @@ build walisonu:
     - words
   script:
     - cd frontend
-    - npm install
-    - npm run build
+    - sudo npm install
+    - sudo npm run build
 
 deploy walisonu:
   stage: deploy
   tags:
     - words
   script:
-    - cd frontend
-    - npm start
+    - sudo rm -rf /usr/share/nginx/html
+    - mkdir /usr/share/nginx/html
+    - mv frontend/build /usr/share/nginx/html

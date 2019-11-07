@@ -17,6 +17,9 @@ deploy walisonu:
   tags:
     - words
   script:
+    - cd frontend
+    - npm install
+    - npm run build
     - rm -rf /home/gitlab-runner/public
     - mkdir /home/gitlab-runner/public
     - mv build /home/gitlab-runner/public

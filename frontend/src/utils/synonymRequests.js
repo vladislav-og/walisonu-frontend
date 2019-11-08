@@ -1,8 +1,10 @@
 import axios from "axios";
 axios.defaults.headers.delete['Content-Type'] ='application/json';
+// const HOST = "http://127.0.0.1:8000/api";
+const HOST = "http://174.129.108.32:8000/api";
 
 export function getAllSynonyms(config, callback, errorCallback){
-    axios.get("http://127.0.0.1:8000/api/synonyms", config)
+    axios.get(HOST + "/synonyms", config)
         .then(res => {
             //do something
 
@@ -19,7 +21,7 @@ export function getAllSynonyms(config, callback, errorCallback){
 }
 
 export function getWordSynonyms(id, config, callback, errorCallback){
-    axios.get(`http://127.0.0.1:8000/api/synonyms/${id}`, config)
+    axios.get(HOST + `/synonyms/${id}`, config)
         .then(res => {
             //do something
             if(callback != null){
@@ -36,7 +38,7 @@ export function getWordSynonyms(id, config, callback, errorCallback){
 
 export function addWordSynonym(word_id, synonym, config, callback, errorCallback){
 
-    axios.post(`http://127.0.0.1:8000/api/synonyms/`,
+    axios.post(HOST + `/synonyms/`,
         {
             word_id: word_id,
             synonym: synonym,
@@ -58,7 +60,7 @@ export function addWordSynonym(word_id, synonym, config, callback, errorCallback
 
 export function deleteWordSynonym(synonym_id, callback, errorCallback){
 
-    axios.delete(`http://127.0.0.1:8000/api/synonyms/${synonym_id}`)
+    axios.delete(HOST + `/synonyms/${synonym_id}`)
         .then(res => {
 
             if(callback != null){
@@ -74,7 +76,7 @@ export function deleteWordSynonym(synonym_id, callback, errorCallback){
 
 export function updateSynonym(synonym_id, word_id, synonym, callback, errorCallback){
 
-    axios.put(`http://127.0.0.1:8000/api/synonyms/${synonym_id}`,
+    axios.put(HOST + `/synonyms/${synonym_id}`,
         {
             "id": synonym_id,
             "word_id": word_id,

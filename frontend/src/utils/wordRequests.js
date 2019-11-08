@@ -1,8 +1,10 @@
 import axios from "axios";
+// const HOST = "http://127.0.0.1:8000/api";
+const HOST = "http://174.129.108.32:8000/api";
 
 export function getAllWords(config, callback, errorCallback){
 
-    axios.get("http://127.0.0.1:8000/api/words", config)
+    axios.get(HOST + "/api/words", config)
         .then(res => {
             //do something
 
@@ -20,7 +22,7 @@ export function getAllWords(config, callback, errorCallback){
 
 export function getWord(id, config, callback, errorCallback){
 
-    axios.get(`http://127.0.0.1:8000/api/words/${id}`, config)
+    axios.get(HOST + `/words/${id}`, config)
         .then(res => {
             //do something
             if(callback != null){
@@ -37,7 +39,7 @@ export function getWord(id, config, callback, errorCallback){
 
 export function addWord(name, config, callback, errorCallback) {
 
-    axios.post(`http://127.0.0.1:8000/api/words/`,
+    axios.post(HOST + `/words/`,
         {
             name: name,
             user_id: 1,
@@ -59,7 +61,7 @@ export function addWord(name, config, callback, errorCallback) {
 
 export function deleteWord(wordId, callback, errorCallback){
 
-    axios.delete(`http://127.0.0.1:8000/api/words/${wordId}`)
+    axios.delete(HOST + `/words/${wordId}`)
         .then(res => {
 
             if(callback != null){

@@ -60,8 +60,11 @@ Configure gitlab
 - 2. Push it to gitlab
 
  **Install NGINX ("sudo" if needed)**
+
 Nginx is a web server which can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.
+
 Also best for serving static files.
+
 >apt install nginx
 apt update
 

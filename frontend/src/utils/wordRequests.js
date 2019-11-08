@@ -4,7 +4,7 @@ const HOST = "http://174.129.108.32:8000/api";
 
 export function getAllWords(config, callback, errorCallback){
 
-    axios.get(HOST + "/api/words", config)
+    axios.get(HOST + "/words", config)
         .then(res => {
             //do something
 

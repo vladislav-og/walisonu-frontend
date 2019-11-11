@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export function getAllUsers(config, callback, errorCallback){
-    axios.get("http://127.0.0.1:8000/api/users", config)
+    axios.get("/api/users", config)
         .then(res => {
             //do something
 
@@ -19,7 +19,7 @@ export function getAllUsers(config, callback, errorCallback){
 
 export function getUser(id, config, callback, errorCallback){
 
-    axios.get(`http://127.0.0.1:8000/api/users/${id}`, config)
+    axios.get(`/api/users/${id}`, config)
         .then(res => {
             //do something
             if(callback != null){

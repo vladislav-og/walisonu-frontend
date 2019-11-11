@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function getAllWords(config, callback, errorCallback){
 
-    axios.get("http://127.0.0.1:8000/api/words", config)
+    axios.get("/api/words", config)
         .then(res => {
             //do something
 
@@ -20,7 +20,7 @@ export function getAllWords(config, callback, errorCallback){
 
 export function getWord(id, config, callback, errorCallback){
 
-    axios.get(`http://127.0.0.1:8000/api/words/${id}`, config)
+    axios.get(`/api/words/${id}`, config)
         .then(res => {
             //do something
             if(callback != null){
@@ -37,7 +37,7 @@ export function getWord(id, config, callback, errorCallback){
 
 export function addWord(name, config, callback, errorCallback) {
 
-    axios.post(`http://127.0.0.1:8000/api/words/`,
+    axios.post(`/api/words/`,
         {
             name: name,
             user_id: 1,
@@ -59,7 +59,7 @@ export function addWord(name, config, callback, errorCallback) {
 
 export function deleteWord(wordId, callback, errorCallback){
 
-    axios.delete(`http://127.0.0.1:8000/api/words/${wordId}`)
+    axios.delete(`/api/words/${wordId}`)
         .then(res => {
 
             if(callback != null){

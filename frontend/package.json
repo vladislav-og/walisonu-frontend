@@ -25,6 +25,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "https://174.129.108.32",
   "devDependencies": {
     "@babel/cli": "^7.6.3",
     "@babel/core": "^7.6.3",

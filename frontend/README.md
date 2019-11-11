@@ -16,6 +16,8 @@ In the project directory, you can run:
 
 ### Deployment
 
-Use **npm run start** for running webpack-dev server. 
+Use **npm run build** for building project with webpack --mode production 
+
+Use **npm run start** for running webpack-dev server
 
 Use **npm run dev** for creating development bundle

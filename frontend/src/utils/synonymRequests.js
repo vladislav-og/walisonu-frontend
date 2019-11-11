@@ -1,5 +1,7 @@
 import axios from "axios";
 axios.defaults.headers.delete['Content-Type'] ='application/json';
+// const HOST = "http://127.0.0.1:8000/api";
+const HOST = "http://174.129.108.32:8000/api";
 
 export function getAllSynonyms(config, callback, errorCallback){
     axios.get("/api/synonyms", config)
@@ -35,7 +37,6 @@ export function getWordSynonyms(id, config, callback, errorCallback){
 }
 
 export function addWordSynonym(word_id, synonym, config, callback, errorCallback){
-
     axios.post(`/api/synonyms/`,
         {
             word_id: word_id,
@@ -73,7 +74,6 @@ export function deleteWordSynonym(synonym_id, callback, errorCallback){
 }
 
 export function updateSynonym(synonym_id, word_id, synonym, callback, errorCallback){
-
     axios.put(`/api/synonyms/${synonym_id}`,
         {
             "id": synonym_id,

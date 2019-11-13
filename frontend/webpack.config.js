@@ -40,6 +40,12 @@ module.exports = {
             { from: './public/favicon.ico'},
             { from: './public/favicon-side.png'},
             {from: './public/manifest.json'}, // <- your path to favicon
-        ])]
+        ])],
+    devServer: {
+        http2: true,
+        proxy: {
+            '/api': 'https://174.129.108.32'
+          }
+    }
 };
 

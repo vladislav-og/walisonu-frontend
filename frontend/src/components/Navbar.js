@@ -6,6 +6,7 @@ import { Navbar, Nav } from "react-bootstrap";
 //import * as requests from '../utils/requests';
 
 class NavbarComp extends Component {
+
   render() {
     return (
       <Navbar bg="primary" variant="dark">

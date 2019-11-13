@@ -81,10 +81,10 @@ Important file:
 
 1. **Firewall**
 >ufw stat                 - firewall statuses
-ufw enable   
-ufw allow https
-ufw allow http
-ufw allow ssh
+>ufw enable
+>ufw allow https
+>ufw allow http
+>ufw allow ssh
 
 2. **Certbot** (Stop Nginx if it's running)
 

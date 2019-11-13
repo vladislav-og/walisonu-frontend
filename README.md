@@ -69,7 +69,8 @@ Also best for serving static files.
 apt update
 
 >service nginx start - Starts the NGINX
-service nginx stop   - Executes the NGINX
+
+>service nginx stop   - Executes the NGINX
 
 > nginx -t              - Tests the configuration (If nginx running and changes are made)
 
@@ -81,19 +82,28 @@ Important file:
 
 1. **Firewall**
 >ufw stat                 - firewall statuses
+
 >ufw enable
+
 >ufw allow https
+
 >ufw allow http
+
 >ufw allow ssh
 
 2. **Certbot** (Stop Nginx if it's running)
 
 >apt install certbot
-certbot certonly --standalone -d walisonu.ga     
-cp -r /etc/letsencrypt/ /home/ubuntu/
-cd /home/ubuntu/
-tar czf letsencrypt.tar.gz letsencrypt/
-certbot renew --dry-run 
+
+>certbot certonly --standalone -d walisonu.ga     
+
+>cp -r /etc/letsencrypt/ /home/ubuntu/
+
+>cd /home/ubuntu/
+
+>tar czf letsencrypt.tar.gz letsencrypt/
+
+>certbot renew --dry-run 
 
 4. Create config backup 
 >cp default.conf default.conf.bck   - copy your configuration for backup

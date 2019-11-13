@@ -44,11 +44,12 @@ module.exports = {
   devServer: {
     http2: true,
     https: true,
-    proxy: { 
-        "/api/**": { 
-            target: "https://174.129.108.32", 
-            secure: false 
-        } 
+    proxy: {
+      "/api/**": {
+        target: "https://174.129.108.32",
+        secure: false,
+        changeOrigin: true
+      }
     }
   }
 };

@@ -40,16 +40,5 @@ module.exports = {
       { from: "./public/favicon-side.png" },
       { from: "./public/manifest.json" } // <- your path to favicon
     ])
-  ],
-  devServer: {
-    http2: true,
-    https: true,
-    proxy: {
-      "/api/**": {
-        target: "https://174.129.108.32",
-        secure: false,
-        changeOrigin: true
-      }
-    }
-  }
+  ]
 };

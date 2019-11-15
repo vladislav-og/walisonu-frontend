@@ -1,6 +1,7 @@
 # Walisonu app
 
-This project was originally deployed to AWS
+### **[WALISONU.GA](https://walisonu.ga)**
+This project is deployed to AWS
 
 ## Technologies
 
@@ -78,7 +79,20 @@ Important file:
 
 	/etc/nginx/conf.d/default.conf
 
-### **OPTIONAL. Setup HTTPS/SSL for Nginx**
+### **OPTIONAL.1.Part Setup HTTPS/SSL | Free DNS **
+
+1. **Freenom**
+
+[Freenom](https://www.freenom.com/)
+
+2. **Create account**
+
+3. **Search for available domain**
+
+4. **Select and insert IP address of your frontend machine**
+
+
+### **OPTIONAL.2.Part Setup HTTPS/SSL | Nginx**
 
 1. **Firewall**
 >ufw stat                 - firewall statuses
@@ -109,5 +123,6 @@ Important file:
 >cp default.conf default.conf.bck   - copy your configuration for backup
 
 REPLACE YOUR NGINX CONFIG WITH OUR CONFIG
+
 
 ### **Congrats you're done!**

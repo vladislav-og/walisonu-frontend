@@ -3,6 +3,10 @@
 ### **[WALISONU.GA](https://walisonu.ga)**
 This project is deployed to AWS
 
+Frontend is running on named DNS (Use it instead IP)
+
+Access SSH key in repository! 
+
 ## Technologies
 
 - React app in NodeJS

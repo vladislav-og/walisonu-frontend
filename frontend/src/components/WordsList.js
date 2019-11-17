@@ -66,7 +66,7 @@ class WordsList extends Component {
                         <Col sm="6">
                             <Form.Control value={this.state.inputWord}
                                           onChange={e => this.updateInputValue(e)}
-                                          type="text" placeholder="Enter new word"/>
+                                          type="text" placeholder="Enter new word 222"/>
                         </Col>
                         <Col>
                             <Button type="submit" variant="primary" onClick={this.addWord}>Submit</Button>

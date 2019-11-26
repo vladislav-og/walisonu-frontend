@@ -40,7 +40,7 @@ export function addWord(name, config, callback, errorCallback) {
     axios.post(`/api/words/`,
         {
             name: name,
-            user_id: 1,
+            userId: 1,
             isActive: true
         }, config)
         .then(res => {

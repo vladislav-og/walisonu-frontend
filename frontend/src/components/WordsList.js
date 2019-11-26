@@ -74,8 +74,8 @@ class WordsList extends Component {
                     </Form.Group>
                 </Form>
                 {this.state.words.map(item => (
-                        <div key={item.word_id} className="word-card">
-                            <Word doWordDelete={() => this.handleWordDelete(item.word_id)} word={item}/>
+                        <div key={item.wordId} className="word-card">
+                            <Word doWordDelete={() => this.handleWordDelete(item.wordId)} word={item}/>
                         </div>
                 ))}
             </Container>

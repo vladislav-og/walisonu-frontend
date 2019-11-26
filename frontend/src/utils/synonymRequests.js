@@ -36,12 +36,12 @@ export function getWordSynonyms(id, config, callback, errorCallback){
         })
 }
 
-export function addWordSynonym(word_id, synonym, config, callback, errorCallback){
+export function addWordSynonym(wordId, synonym, config, callback, errorCallback){
     axios.post(`/api/synonyms/`,
         {
-            word_id: word_id,
+            wordId: wordId,
             synonym: synonym,
-            user_id: 1
+            userId: 1
             }, config)
         .then(res => {
             //do something
@@ -73,11 +73,11 @@ export function deleteWordSynonym(synonym_id, callback, errorCallback){
         })
 }
 
-export function updateSynonym(synonym_id, word_id, synonym, callback, errorCallback){
-    axios.put(`/api/synonyms/${synonym_id}`,
+export function updateSynonym(synonymId, wordId, synonym, callback, errorCallback){
+    axios.put(`/api/synonyms/${synonymId}`,
         {
-            "id": synonym_id,
-            "word_id": word_id,
+            "id": synonymId,
+            "wordId": wordId,
             "synonym": synonym
         })
         .then(res => {

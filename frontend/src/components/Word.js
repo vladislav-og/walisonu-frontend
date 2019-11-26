@@ -19,7 +19,7 @@ class Word extends Component {
     };
 
     onClick = () => {
-        getWordSynonyms(this.props.word.word_id, this.config, res => {
+        getWordSynonyms(this.props.word.wordId, this.config, res => {
             this.setState({synonyms: res.data.sort((a,b) => (a.synonym_id > b.synonym_id) ? 1 : ((b.synonym_id > a.synonym_id) ? -1 : 0))});
             // console.log(this.state.synonyms)
         }, (err) => {
@@ -36,7 +36,7 @@ class Word extends Component {
     addSynonym = (e) => {
         e.preventDefault();
         if (!this.state.inputSynonym) return
-        addWordSynonym(this.props.word.word_id, this.state.inputSynonym, this.config, res => {
+        addWordSynonym(this.props.word.wordId, this.state.inputSynonym, this.config, res => {
             //TODO: Probably not the best way....
             this.onClick();
             this.setState({show: !this.state.show});
@@ -65,16 +65,16 @@ class Word extends Component {
     };
 
     updateSynonym = (id, synonym) => {
-        updateSynonym(id, this.props.word.word_id, synonym, res => {
+        updateSynonym(id, this.props.word.wordId, synonym, res => {
             let index = this.state.synonyms.findIndex(function(item){
                 return item.synonym_id === id;
             });
 
             this.state.synonyms[index] = {
                 "synonym_id": res.data.id,
-                "word_id": res.data.word_id,
+                "wordId": res.data.wordId,
                 "synonym": res.data.synonym,
-                "user_id": res.data.user_id,
+                "userId": res.data.userId,
                 "active": res.data.active,
             };
             this.setState({

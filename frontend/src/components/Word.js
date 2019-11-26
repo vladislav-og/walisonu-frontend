@@ -20,7 +20,7 @@ class Word extends Component {
 
     onClick = () => {
         getWordSynonyms(this.props.word.wordId, this.config, res => {
-            this.setState({synonyms: res.data.sort((a,b) => (a.synonym_id > b.synonym_id) ? 1 : ((b.synonym_id > a.synonym_id) ? -1 : 0))});
+            this.setState({synonyms: res.data.sort((a,b) => (a.synonymId > b.synonymId) ? 1 : ((b.synonymId > a.synonymId) ? -1 : 0))});
             // console.log(this.state.synonyms)
         }, (err) => {
             //error
@@ -49,13 +49,11 @@ class Word extends Component {
     };
 
     deleteSynonym = (id) => {
-        deleteWordSynonym(id, res => {
+        deleteWordSynonym(id,res => {
             let index = this.state.synonyms.findIndex(function(item){
-                return item.synonym_id === res;
+                return item.synonymId === res;
             });
-
             this.state.synonyms.splice(index, 1);
-
             this.setState({
                 synonyms: [...this.state.synonyms]
             })
@@ -68,24 +66,19 @@ class Word extends Component {
 
     updateSynonym = (id, synonym) => {
         updateSynonym(id, this.props.word.wordId, synonym, res => {
-            let update = [...this.state.synonyms]
-
-            let index = update.findIndex(function(item){
-                return item.synonym_id === id;
+            let index = this.state.synonyms.findIndex(function(item){
+                return item.synonymId === id;
             });
-            console.log(this.state.synonyms);
 
-            update[index] = {
-                "synonym_id": res.data.id,
+            this.state.synonyms[index] = {
+                "synonymId": res.data.id,
                 "wordId": res.data.wordId,
                 "synonym": res.data.synonym,
                 "userId": res.data.userId,
                 "active": res.data.active,
             };
-            console.log(update);
-
             this.setState({
-                synonyms: [...update]
+                synonyms: [...this.state.synonyms]
             })
         })
     };
@@ -95,6 +88,7 @@ class Word extends Component {
             inputSynonym: e.target.value
         });
     };
+
 
     render() {
         if (this.state.show === false) {

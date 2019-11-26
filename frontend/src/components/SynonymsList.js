@@ -17,7 +17,7 @@ class SynonymsList extends Component {
             <Fragment>
                     <ListGroup>
                         {this.props.synonyms.map(item => (
-                                <Synonym key={item.synonym_id}
+                                <Synonym key={item.synonymId}
                                          synonym={item}
                                          deleteSynonym={this.props.deleteSynonym}
                                          updateSynonym={this.props.updateSynonym}/>

@@ -49,7 +49,7 @@ class Word extends Component {
     };
 
     deleteSynonym = (id) => {
-        deleteWordSynonym(id,res => {
+        deleteWordSynonym(id, res => {
             let index = this.state.synonyms.findIndex(function(item){
                 return item.synonym_id === res;
             });
@@ -66,10 +66,12 @@ class Word extends Component {
 
     updateSynonym = (id, synonym) => {
         updateSynonym(id, this.props.word.wordId, synonym, res => {
+
+            console.log('a');
             let index = this.state.synonyms.findIndex(function(item){
                 return item.synonym_id === id;
             });
-
+            console.log('b');
             this.state.synonyms[index] = {
                 "synonym_id": res.data.id,
                 "wordId": res.data.wordId,
@@ -77,9 +79,11 @@ class Word extends Component {
                 "userId": res.data.userId,
                 "active": res.data.active,
             };
+            console.log('c');
             this.setState({
                 synonyms: [...this.state.synonyms]
             })
+            console.log("d")
         })
     };
 
@@ -88,7 +92,6 @@ class Word extends Component {
             inputSynonym: e.target.value
         });
     };
-
 
     render() {
         if (this.state.show === false) {

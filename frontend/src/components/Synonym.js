@@ -22,7 +22,7 @@ class Synonym extends Component {
     };
 
     updateSynonym = () => {
-        this.props.updateSynonym(this.props.synonym.synonym_id, this.state.newSynonym);
+        this.props.updateSynonym(this.props.synonym.synonymId, this.state.newSynonym);
         this.toggleUpdate()
     };
 
@@ -40,7 +40,7 @@ class Synonym extends Component {
                                 {this.props.synonym.synonym}
                             </Col>
                             <Col sm="2">
-                                <Button type="submit" variant="danger" onClick={() => this.props.deleteSynonym(this.props.synonym.synonym_id)}>Delete</Button>
+                                <Button type="submit" variant="danger" onClick={() => this.props.deleteSynonym(this.props.synonym.synonymId)}>Delete</Button>
                             </Col>
                             <Col sm="2">
                                 <Button type="submit" variant="info" onClick={this.toggleUpdate}>Update</Button>

@@ -53,7 +53,9 @@ class Word extends Component {
             let index = this.state.synonyms.findIndex(function(item){
                 return item.synonym_id === res;
             });
+
             this.state.synonyms.splice(index, 1);
+
             this.setState({
                 synonyms: [...this.state.synonyms]
             })
@@ -66,24 +68,25 @@ class Word extends Component {
 
     updateSynonym = (id, synonym) => {
         updateSynonym(id, this.props.word.wordId, synonym, res => {
+            let update = [...this.state.synonyms]
 
-            console.log('a');
-            let index = this.state.synonyms.findIndex(function(item){
+            let index = update.findIndex(function(item){
                 return item.synonym_id === id;
             });
-            console.log('b');
-            this.state.synonyms[index] = {
+            console.log(this.state.synonyms);
+
+            update[index] = {
                 "synonym_id": res.data.id,
                 "wordId": res.data.wordId,
                 "synonym": res.data.synonym,
                 "userId": res.data.userId,
                 "active": res.data.active,
             };
-            console.log('c');
+            console.log(update);
+
             this.setState({
-                synonyms: [...this.state.synonyms]
+                synonyms: [...update]
             })
-            console.log("d")
         })
     };
 

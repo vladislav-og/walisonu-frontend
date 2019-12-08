@@ -1,0 +1,18 @@
+.form {
+    width: 40rem;
+    font-size: 2rem;
+    border: 0;
+    left: calc(50% - 20rem);
+    position: absolute;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    margin: 2rem;
+}
+
+.form-control {
+    font-size: 1.5rem;
+}
+
+.btn-primary {
+    font-size: 2rem;
+}

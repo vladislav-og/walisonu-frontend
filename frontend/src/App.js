@@ -1,6 +1,7 @@
 import React from 'react';
-import {Route, BrowserRouter as Router, Switch} from 'react-router-dom';
+import {Route, HashRouter as Router, Switch} from 'react-router-dom';
 import WordsList from './components/WordsList'
+import LoginPage from './components/LoginPage'
 import NavbarComp from './components/Navbar'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
               <div>
                   <Switch>
                       <Route exact path="/" component={WordsList}/>
+                      <Route exact path="/login" component={LoginPage}/>
                   </Switch>
               </div>
           </Router>

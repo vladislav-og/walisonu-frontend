@@ -5,6 +5,11 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: "./src/index.js",
   mode: "development",
+  devServer: {
+    proxy: {
+      '/api': 'http://localhost:80'
+    }
+  },
   module: {
     rules: [
       {

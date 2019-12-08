@@ -72,4 +72,3 @@ class Synonym extends Component {
 }
 
 export default (Synonym);
-

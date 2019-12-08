@@ -4,6 +4,7 @@ import WordsList from './components/WordsList'
 import LoginPage from './components/LoginPage'
 import RegisterPage from './components/RegisterPage'
 import NavbarComp from './components/Navbar'
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
             <NavbarComp/>
               <div>
                   <Switch>
-                      <Route exact path="/" component={WordsList}/>
+                      <PrivateRoute exact path="/" component={WordsList}/>
                       <Route exact path="/login" component={LoginPage}/>
                       <Route exact path="/register" component={RegisterPage}/>
                   </Switch>

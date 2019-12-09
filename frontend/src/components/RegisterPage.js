@@ -4,34 +4,39 @@ import {Button, Form} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
+import {register} from '../utils/authRequests'
 
 class RegisterPage extends Component {
     static propTypes = {
-        register: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.bool,
     };
 
-    state = {
-        username: "",
-        email: "",
-        password1: "",
-        password2: "",
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            email: "",
+            password1: "",
+            password2: "",
+        };
+    }
 
     onSubmit = e => {
         e.preventDefault();
         const {username, email, password1, password2} = this.state;
 
         if(password1 !== password2) {
-            this.props.createMessage({passwordNotMatch: "Passwords do not match"});
+            console.log("Passwords do not match");
         } else {
             const newUser = {
-                username,
-                password1,
-                password2,
-                email,
+                email: email,
+                password: password1,
             };
-            this.props.register(newUser)
+
+            register(newUser, res => {
+                }, err => {
+                alert(err);
+            });
         }
     };
 

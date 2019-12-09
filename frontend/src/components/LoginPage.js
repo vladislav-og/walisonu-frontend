@@ -3,41 +3,59 @@ import { Link, Redirect } from "react-router-dom"
 import {Form, Button} from "react-bootstrap";
 import PropTypes from "prop-types";
 import '../static/css/pages.css'
+import {login} from '../utils/authRequests'
+
 
 class LoginPage extends Component {
     static propTypes = {
-        login: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.bool,
     };
 
-    state = {
-        username: "",
-        password: ""
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isAuthenticated: this.props.location.state !== undefined ? this.props.location.state.isAuthenticated : false,
+            email: "",
+            password: ""
+        };
+    }
 
     onSubmit = e => {
         e.preventDefault();
-        this.props.login(this.state.username, this.state.password)
+        login({email: this.state.email, password:this.state.password}, res => {
+            localStorage.setItem("ACCESS_TOKEN", res.data.token);
+            console.log(res.data.token)
+            // this.setState({
+            //     isLoading: false,
+            //     currentUser: res.data,
+            //     isAuthenticated: true,
+            // });
+        }, err => {
+            alert(err);
+        });
     };
 
     onChange = e => this.setState({[e.target.name]: e.target.value});
 
     render() {
-        if(this.props.isAuthenticated) {
+        console.log('login');
+        console.log(this.state);
+        if(this.state.isAuthenticated) {
             return <Redirect to="/"/>
         }
-        const {username, password } = this.state;
+        const {email, password } = this.state;
         return (
             <div className="form">
                 <Form onSubmit={this.onSubmit}>
                     <Form.Group>
-                        <Form.Label >Username</Form.Label>
+                        <Form.Label >Email</Form.Label>
                         <Form.Control type="text"
                                       className="form-input"
-                                      name="username"
+                                      name="email"
                                       onChange={this.onChange}
-                                      placeholder="Username"
-                                      value={username}
+                                      placeholder="Email"
+                                      value={email}
                         />
                     </Form.Group>
                     <Form.Group>

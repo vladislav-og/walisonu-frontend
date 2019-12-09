@@ -17,14 +17,32 @@ class App extends Component{
         };
     }
 
-    // componentDidMount() {
-    //     this.loadCurrentUser();
-    // }
+    componentDidMount() {
+        console.log('load current user');
+        this.loadCurrentUser();
+    }
 
     loadCurrentUser = () => {
         this.setState({
             isLoading: true
         });
+        getCurrentUser(res => {
+            this.setState({
+                isLoading: false,
+                currentUser: res.data,
+                isAuthenticated: true,
+            });
+            console.log("successfully get logged in user")
+            console.log(res);
+            console.log(this.state)
+
+        }, err => {
+            if (err.response.status === 401) {
+                this.setState({
+                    isLoading: false,
+                });
+            }
+        })
     };
 
     handleLogout = (redirectTo="/", description="You're successfully logged out.") => {
@@ -44,8 +62,8 @@ class App extends Component{
                 <div>
                     <Switch>
                         <PrivateRoute exact path="/" component={WordsList} state={this.state}/>
-                        <Route exact path="/login" component={LoginPage}/>
-                        <Route exact path="/register" component={RegisterPage}/>
+                        <Route exact path="/login" component={LoginPage} state={this.state}/>
+                        <Route exact path="/register" component={RegisterPage} state={this.state}/>
                     </Switch>
                 </div>
             </Router>

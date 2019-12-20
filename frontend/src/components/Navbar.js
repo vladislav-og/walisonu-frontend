@@ -13,7 +13,7 @@ class NavbarComp extends Component {
 
   render() {
     const loginButton = this.props.state.isAuthenticated ?
-        <NavItem eventkey={1} href="/"><Nav.Link as={Link} to="/" >Logout</Nav.Link></NavItem>:
+        <NavItem eventkey={1} href="/"><Nav.Link onClick={this.props.logout}>Logout</Nav.Link></NavItem>:
         <NavItem eventkey={3} href="/"><Nav.Link as={Link} to="/login" >Login</Nav.Link></NavItem>;
     const registerButton = this.props.state.isAuthenticated ? "" : <Nav.Link as={Link} to="/register" >Register</Nav.Link>;
     return (

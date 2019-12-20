@@ -32,9 +32,7 @@ class App extends Component{
                 currentUser: res.data,
                 isAuthenticated: true,
             });
-            console.log("successfully get logged in user")
-            console.log(res);
-            console.log(this.state)
+            console.log("successfully logged in user");
 
         }, err => {
             if (err.response.status === 401) {
@@ -45,24 +43,38 @@ class App extends Component{
         })
     };
 
-    handleLogout = (redirectTo="/", description="You're successfully logged out.") => {
-        localStorage.removeItem(ACCESS_TOKEN);
+    updateAuthState = (authState) => {
+        console.log("Update auth state");
+        this.setState({
+            isAuthenticated: authState,
+        })
+    };
 
+    updateUserState = (user) => {
+        console.log("Update user state");
+        this.setState({
+            currentUser: user,
+        })
+    };
+
+    logout = () => {
+        localStorage.removeItem("ACCESS_TOKEN");
+        console.log("logout")
         this.setState({
             currentUser: null,
             isAuthenticated: false,
+            isLoading: false,
         });
-
     };
 
     render() {
         return (
             <Router>
-                <NavbarComp state={this.state} />
+                <NavbarComp state={this.state} logout = {this.logout}/>
                 <div>
                     <Switch>
-                        <PrivateRoute exact path="/" component={WordsList} state={this.state}/>
-                        <Route exact path="/login" component={LoginPage} state={this.state}/>
+                        <PrivateRoute exact path="/" component={WordsList} state={this.state} updateAuthState={this.updateAuthState} updateUserState={this.updateUserState}/>
+                        <PrivateRoute exact path="/login" component={LoginPage} state={this.state} updateAuthState={this.updateAuthState} updateUserState={this.updateUserState}/>
                         <Route exact path="/register" component={RegisterPage} state={this.state}/>
                     </Switch>
                 </div>

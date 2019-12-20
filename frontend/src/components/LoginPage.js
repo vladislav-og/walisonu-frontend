@@ -13,9 +13,10 @@ class LoginPage extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
-            isAuthenticated: this.props.location.state !== undefined ? this.props.location.state.isAuthenticated : false,
+            isAuthenticated: this.props.state.isAuthenticated,
+            currentUser: this.props.state.currentUser,
+            isLoading: this.props.state.isLoading,
             email: "",
             password: ""
         };
@@ -23,14 +24,11 @@ class LoginPage extends Component {
 
     onSubmit = e => {
         e.preventDefault();
+        console.log("submit login form");
         login({email: this.state.email, password:this.state.password}, res => {
             localStorage.setItem("ACCESS_TOKEN", res.data.token);
-            console.log(res.data.token)
-            // this.setState({
-            //     isLoading: false,
-            //     currentUser: res.data,
-            //     isAuthenticated: true,
-            // });
+            this.props.updateAuthState(true);
+            this.props.updateUserState(res.data);
         }, err => {
             alert(err);
         });
@@ -39,9 +37,9 @@ class LoginPage extends Component {
     onChange = e => this.setState({[e.target.name]: e.target.value});
 
     render() {
-        console.log('login');
-        console.log(this.state);
-        if(this.state.isAuthenticated) {
+        console.log('Load Login Page');
+        if(this.props.state.isAuthenticated) {
+            console.log("redirect to HomePage");
             return <Redirect to="/"/>
         }
         const {email, password } = this.state;
@@ -81,9 +79,5 @@ class LoginPage extends Component {
         );
     }
 }
-
-// const mapStateToProps = state => ({
-//     isAuthenticated: state.auth.isAuthenticated
-// });
 
 export default (LoginPage);

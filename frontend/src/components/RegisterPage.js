@@ -34,6 +34,8 @@ class RegisterPage extends Component {
             };
 
             register(newUser, res => {
+                console.log("successfully registered new User")
+                console.log(res)
                 }, err => {
                 alert(err);
             });

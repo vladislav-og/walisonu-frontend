@@ -2,9 +2,10 @@ import axios from "axios";
 
 export function getCurrentUser(callback, errorCallback) {
     console.log("get user data");
-    if(!localStorage.getItem("ACCESS_TOKEN")) {
-        return Promise.reject("No access token set.");
-    }
+    // if(!localStorage.getItem("ACCESS_TOKEN")) {
+    //     console.log("no token")
+    //     errorCallback("No access token set.");
+    // }
 
     console.log('Bearer ' + localStorage.getItem("ACCESS_TOKEN"));
     axios.get('api/users/me', {"Access-Control-Allow-Origin": "*", headers: {

@@ -6,10 +6,10 @@ import "../static/css/words.css"
 import Word from "./Word"
 
 class WordsList extends Component {
-    // config = {"Access-Control-Allow-Origin": "*"};
 
     constructor(props) {
         super(props);
+        console.log(this.props);
         this.state = {
             words: [],
             inputWord: '',
@@ -21,7 +21,7 @@ class WordsList extends Component {
     };
 
     getWords = (e) => {
-        getAllWords(this.config, res => {
+        getAllWords(res => {
             console.log('get all new words');
             this.setState({words: res.data});
         }, (err) => {
@@ -39,7 +39,7 @@ class WordsList extends Component {
     addWord= (e) => {
         e.preventDefault();
         if (!this.state.inputWord) return
-        addWord(this.state.inputWord, this.config, res => {
+        addWord(this.state.inputWord,res => {
             this.getWords();
         }, (err) => {
             //error
@@ -73,11 +73,13 @@ class WordsList extends Component {
                         </Col>
                     </Form.Group>
                 </Form>
-                {this.state.words.map(item => (
+                {
+                    this.state.words.map(item => (
                         <div key={item.wordId} className="word-card">
-                            <Word doWordDelete={() => this.handleWordDelete(item.wordId)} word={item}/>
+                            <Word doWordDelete={() => this.handleWordDelete(item.wordId)} word={item} state = {this.props.state}/>
                         </div>
-                ))}
+                    ))
+                }
             </Container>
         );
     };

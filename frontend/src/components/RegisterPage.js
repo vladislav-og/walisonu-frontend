@@ -14,6 +14,7 @@ class RegisterPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isAuthenticated: false,
             username: "",
             email: "",
             password1: "",
@@ -34,8 +35,10 @@ class RegisterPage extends Component {
             };
 
             register(newUser, res => {
-                console.log("successfully registered new User")
-                console.log(res)
+                console.log("successfully registered new User");
+                this.setState({
+                    isAuthenticated: true,
+                })
                 }, err => {
                 alert(err);
             });
@@ -48,8 +51,8 @@ class RegisterPage extends Component {
 
 
     render() {
-        if(this.props.isAuthenticated) {
-            return <Redirect to="/" />
+        if(this.state.isAuthenticated) {
+            return <Redirect to="/login" state = {this.props.state} updateAuthState = {this.props.updateAuthState} updateUserState = {this.props.updateUserState}/>
         }
         const { username, email, password, password2 } = this.state;
         return (

@@ -1,8 +1,11 @@
 import axios from "axios";
 axios.defaults.headers.delete['Content-Type'] ='application/json';
+const conf = {headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+    }};
 
-export function getAllSynonyms(config, callback, errorCallback){
-    axios.get("/api/synonyms", config)
+export function getAllSynonyms(callback, errorCallback){
+    axios.get("/api/synonyms", conf)
         .then(res => {
             //do something
 
@@ -18,8 +21,8 @@ export function getAllSynonyms(config, callback, errorCallback){
         })
 }
 
-export function getWordSynonyms(id, config, callback, errorCallback){
-    axios.get(`/api/synonyms/${id}`, config)
+export function getWordSynonyms(id, callback, errorCallback){
+    axios.get(`/api/synonyms/${id}`, conf)
         .then(res => {
             //do something
             if(callback != null){
@@ -34,13 +37,13 @@ export function getWordSynonyms(id, config, callback, errorCallback){
         })
 }
 
-export function addWordSynonym(wordId, synonym, config, callback, errorCallback){
+export function addWordSynonym(wordId, synonym, callback, errorCallback){
     axios.post(`/api/synonyms/`,
         {
             wordId: wordId,
             synonym: synonym,
             userId: 1
-            }, config)
+            }, conf)
         .then(res => {
             //do something
             if(callback != null){
@@ -57,7 +60,7 @@ export function addWordSynonym(wordId, synonym, config, callback, errorCallback)
 
 export function deleteWordSynonym(synonym_id, callback, errorCallback) {
 
-    axios.delete(`/api/synonyms/${synonym_id}`)
+    axios.delete(`/api/synonyms/${synonym_id}`, conf)
         .then(res => {
 
             if(callback != null){
@@ -77,7 +80,7 @@ export function updateSynonym(synonymId, wordId, synonym, callback, errorCallbac
             "id": synonymId,
             "wordId": wordId,
             "synonym": synonym
-        })
+        }, conf)
         .then(res => {
 
             if(callback != null){

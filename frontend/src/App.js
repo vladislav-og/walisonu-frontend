@@ -75,7 +75,7 @@ class App extends Component{
                     <Switch>
                         <PrivateRoute exact path="/" component={WordsList} state={this.state} updateAuthState={this.updateAuthState} updateUserState={this.updateUserState}/>
                         <PrivateRoute exact path="/login" component={LoginPage} state={this.state} updateAuthState={this.updateAuthState} updateUserState={this.updateUserState}/>
-                        <Route exact path="/register" component={RegisterPage} state={this.state}/>
+                        <Route exact path="/register" component={RegisterPage} state={this.state} updateAuthState={this.updateAuthState} updateUserState={this.updateUserState}/>
                     </Switch>
                 </div>
             </Router>

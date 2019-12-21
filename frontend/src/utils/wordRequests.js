@@ -1,8 +1,11 @@
 import axios from "axios";
+const conf = {headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+    }};
 
-export function getAllWords(config, callback, errorCallback){
+export function getAllWords(callback, errorCallback){
 
-    axios.get("/api/words", config)
+    axios.get("/api/words", conf)
         .then(res => {
             //do something
 
@@ -18,9 +21,9 @@ export function getAllWords(config, callback, errorCallback){
         })
 }
 
-export function getWord(id, config, callback, errorCallback){
+export function getWord(id, callback, errorCallback){
 
-    axios.get(`/api/words/${id}`, config)
+    axios.get(`/api/words/${id}`, conf)
         .then(res => {
             //do something
             if(callback != null){
@@ -35,14 +38,14 @@ export function getWord(id, config, callback, errorCallback){
         })
 }
 
-export function addWord(name, config, callback, errorCallback) {
+export function addWord(name, callback, errorCallback) {
 
     axios.post(`/api/words/`,
         {
             name: name,
             userId: 1,
             isActive: true
-        }, config)
+        }, conf)
         .then(res => {
             //do something
             if (callback != null) {
@@ -59,7 +62,7 @@ export function addWord(name, config, callback, errorCallback) {
 
 export function deleteWord(wordId, callback, errorCallback){
 
-    axios.delete(`/api/words/${wordId}`)
+    axios.delete(`/api/words/${wordId}`, conf)
         .then(res => {
 
             if(callback != null){

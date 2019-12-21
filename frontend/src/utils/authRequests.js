@@ -1,4 +1,7 @@
 import axios from "axios";
+const conf = {headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+    }};
 
 export function getCurrentUser(callback, errorCallback) {
     console.log("get user data");
@@ -8,9 +11,7 @@ export function getCurrentUser(callback, errorCallback) {
     // }
 
     console.log('Bearer ' + localStorage.getItem("ACCESS_TOKEN"));
-    axios.get('api/users/me', {"Access-Control-Allow-Origin": "*", headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
-        }}).then(res => {
+    axios.get('api/users/me', conf).then(res => {
             if (callback != null) {
                 callback(res);
             }
@@ -22,9 +23,7 @@ export function getCurrentUser(callback, errorCallback) {
 }
 
 export function register(data, callback, errorCallback) {
-    axios.post('api/users/register',
-        data,
-        {"Access-Control-Allow-Origin": "*"})
+    axios.post('api/users/register', data)
         .then(res => {
             //do something
             if(callback != null){
@@ -40,9 +39,7 @@ export function register(data, callback, errorCallback) {
 }
 
 export function login(data, callback, errorCallback) {
-    axios.post('api/users/login',
-        data,
-        {"Access-Control-Allow-Origin": "*"})
+    axios.post('api/users/login', data)
         .then(res => {
             //do something
             if(callback != null){

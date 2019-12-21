@@ -1,7 +1,10 @@
 import axios from "axios";
+const conf = {headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+    }};
 
-export function getAllUsers(config, callback, errorCallback){
-    axios.get("/api/users", config)
+export function getAllUsers( callback, errorCallback){
+    axios.get("/api/users", conf)
         .then(res => {
             //do something
 
@@ -17,9 +20,9 @@ export function getAllUsers(config, callback, errorCallback){
         })
 }
 
-export function getUser(id, config, callback, errorCallback){
+export function getUser(id, callback, errorCallback){
 
-    axios.get(`/api/users/${id}`, config)
+    axios.get(`/api/users/${id}`, conf)
         .then(res => {
             //do something
             if(callback != null){

@@ -11,6 +11,7 @@ class Word extends Component {
 
     constructor(props) {
         super(props);
+        console.log(this.props)
         this.state = {
             show: false,
             synonyms: [],
@@ -19,7 +20,7 @@ class Word extends Component {
     };
 
     onClick = () => {
-        getWordSynonyms(this.props.word.wordId, this.config, res => {
+        getWordSynonyms(this.props.word.wordId,res => {
             this.setState({synonyms: res.data.sort((a,b) => (a.synonymId > b.synonymId) ? 1 : ((b.synonymId > a.synonymId) ? -1 : 0))});
             // console.log(this.state.synonyms)
         }, (err) => {
@@ -36,7 +37,7 @@ class Word extends Component {
     addSynonym = (e) => {
         e.preventDefault();
         if (!this.state.inputSynonym) return
-        addWordSynonym(this.props.word.wordId, this.state.inputSynonym, this.config, res => {
+        addWordSynonym(this.props.word.wordId, this.state.inputSynonym,res => {
             //TODO: Probably not the best way....
             this.onClick();
             this.setState({show: !this.state.show});
@@ -98,10 +99,14 @@ class Word extends Component {
                         <Card.Body>
                             <Card.Title>
                                 {this.props.word.name}
-                                <Button style={{
-                                    float: "inline-end",
-                                    margin: "0.2rem"
-                                        }} variant="danger" size="sm" onClick={this.props.doWordDelete}>Delete</Button>
+                                {
+                                    this.props.state.currentUser.role === "ADMIN" &&
+                                    <Button style={{
+                                        float: "inline-end",
+                                        margin: "0.2rem"
+                                    }} variant="danger" size="sm" onClick={this.props.doWordDelete}>Delete
+                                    </Button>
+                                }
                             </Card.Title>
                             <Button variant="primary" onClick={this.onClick}>See synonyms</Button>
                         </Card.Body>

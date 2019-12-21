@@ -7,11 +7,9 @@ import {getWordSynonyms, addWordSynonym, deleteWordSynonym, updateSynonym} from 
 
 
 class Word extends Component {
-    config = {"Access-Control-Allow-Origin": "*"};
 
     constructor(props) {
         super(props);
-        console.log(this.props)
         this.state = {
             show: false,
             synonyms: [],
@@ -118,7 +116,7 @@ class Word extends Component {
             <Fragment>
                 <Card>
                     <Card.Header><Card.Title>{this.props.word.name}</Card.Title></Card.Header>
-                    <Synonym synonyms={this.state.synonyms} deleteSynonym={this.deleteSynonym} updateSynonym={this.updateSynonym}/>
+                    <Synonym synonyms={this.state.synonyms} state = {this.props.state} deleteSynonym={this.deleteSynonym} updateSynonym={this.updateSynonym}/>
                     <ListGroup.Item>
                         <Form>
                             <Form.Group as={Row}>

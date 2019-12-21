@@ -1,11 +1,10 @@
 import React, {Component, Fragment} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import {Button, Col, Form, ListGroup, Row} from "react-bootstrap";
+import {ListGroup} from "react-bootstrap";
 import "../static/css/words.css"
 import Synonym from "./Synonym";
 
 class SynonymsList extends Component {
-    config = {"Access-Control-Allow-Origin": "*"};
 
     constructor(props) {
         super(props);
@@ -19,6 +18,7 @@ class SynonymsList extends Component {
                         {this.props.synonyms.map(item => (
                                 <Synonym key={item.synonymId}
                                          synonym={item}
+                                         state = {this.props.state}
                                          deleteSynonym={this.props.deleteSynonym}
                                          updateSynonym={this.props.updateSynonym}/>
                             ))}

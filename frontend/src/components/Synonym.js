@@ -5,7 +5,6 @@ import "../static/css/words.css"
 import {deleteWordSynonym} from "../utils/synonymRequests"
 
 class Synonym extends Component {
-    config = {"Access-Control-Allow-Origin": "*"};
 
     constructor(props) {
         super(props);
@@ -39,12 +38,16 @@ class Synonym extends Component {
                             <Col sm="2">
                                 {this.props.synonym.synonym}
                             </Col>
-                            <Col sm="2">
-                                <Button type="submit" variant="danger" onClick={() => this.props.deleteSynonym(this.props.synonym.synonymId)}>Delete</Button>
-                            </Col>
-                            <Col sm="2">
-                                <Button type="submit" variant="info" onClick={this.toggleUpdate}>Update</Button>
-                            </Col>
+                            {this.props.state.currentUser.role === "ADMIN" &&
+                                <Fragment>
+                                    <Col sm="2">
+                                        <Button type="submit" variant="danger" onClick={() => this.props.deleteSynonym(this.props.synonym.synonymId)}>Delete</Button>
+                                    </Col>
+                                    <Col sm="2">
+                                        <Button type="submit" variant="info" onClick={this.toggleUpdate}>Update</Button>
+                                    </Col>
+                                </Fragment>
+                            }
                         </Row>
                     </ListGroup.Item>
                 </Fragment>

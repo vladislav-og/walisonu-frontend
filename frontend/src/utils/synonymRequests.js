@@ -44,7 +44,9 @@ export function addWordSynonym(wordId, synonym, callback, errorCallback){
             wordId: wordId,
             synonym: synonym,
             userId: 1
-            }, conf)
+            }, {headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+            }})
         .then(res => {
             //do something
             if(callback != null){
@@ -83,7 +85,9 @@ export function updateSynonym(synonymId, wordId, synonym, callback, errorCallbac
             "id": synonymId,
             "wordId": wordId,
             "synonym": synonym
-        }, conf)
+        }, {headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+            }})
         .then(res => {
 
             if(callback != null){

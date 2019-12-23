@@ -98,7 +98,7 @@ class Word extends Component {
                             <Card.Title>
                                 {this.props.word.name}
                                 {
-                                    this.props.state.currentUser.role === "ADMIN" &&
+                                    this.props.state.currentUser != null && this.props.state.currentUser.role === "ADMIN" &&
                                     <Button style={{
                                         float: "inline-end",
                                         margin: "0.2rem"
@@ -106,7 +106,10 @@ class Word extends Component {
                                     </Button>
                                 }
                             </Card.Title>
-                            <Button variant="primary" onClick={this.onClick}>See synonyms</Button>
+                            {
+                                this.props.state.isAuthenticated &&
+                                <Button variant="primary" onClick={this.onClick}>See synonyms</Button>
+                            }
                         </Card.Body>
                     </Card>
                 </Fragment>

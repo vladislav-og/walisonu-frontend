@@ -1,11 +1,10 @@
 import axios from "axios";
 axios.defaults.headers.delete['Content-Type'] ='application/json';
-const conf = {headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
-    }};
 
 export function getAllSynonyms(callback, errorCallback){
-    axios.get("/api/synonyms", conf)
+    axios.get("/api/synonyms", {headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+        }})
         .then(res => {
             //do something
 
@@ -22,7 +21,9 @@ export function getAllSynonyms(callback, errorCallback){
 }
 
 export function getWordSynonyms(id, callback, errorCallback){
-    axios.get(`/api/synonyms/${id}`, conf)
+    axios.get(`/api/synonyms/${id}`, {headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+        }})
         .then(res => {
             //do something
             if(callback != null){
@@ -60,7 +61,9 @@ export function addWordSynonym(wordId, synonym, callback, errorCallback){
 
 export function deleteWordSynonym(synonym_id, callback, errorCallback) {
 
-    axios.delete(`/api/synonyms/${synonym_id}`, conf)
+    axios.delete(`/api/synonyms/${synonym_id}`, {headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+        }})
         .then(res => {
 
             if(callback != null){

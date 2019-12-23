@@ -1,7 +1,4 @@
 import axios from "axios";
-const conf = {headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
-    }};
 
 export function getCurrentUser(callback, errorCallback) {
     console.log("get user data");
@@ -11,7 +8,9 @@ export function getCurrentUser(callback, errorCallback) {
     // }
 
     console.log('Bearer ' + localStorage.getItem("ACCESS_TOKEN"));
-    axios.get('api/users/me', conf).then(res => {
+    axios.get('api/users/me', {headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+        }}).then(res => {
             if (callback != null) {
                 callback(res);
             }

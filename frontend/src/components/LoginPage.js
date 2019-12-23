@@ -27,8 +27,12 @@ class LoginPage extends Component {
         console.log("submit login form");
         login({email: this.state.email, password:this.state.password}, res => {
             localStorage.setItem("ACCESS_TOKEN", res.data.token);
-            this.props.updateAuthState(true);
-            this.props.updateUserState(res.data);
+
+            this.props.updateAppState({
+                isLoading: false,
+                currentUser: res.data,
+                isAuthenticated: true,
+            });
         }, err => {
             alert(err);
         });

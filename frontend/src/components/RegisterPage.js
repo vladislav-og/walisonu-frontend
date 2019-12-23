@@ -52,7 +52,7 @@ class RegisterPage extends Component {
 
     render() {
         if(this.state.isAuthenticated) {
-            return <Redirect to="/login" state = {this.props.state} updateAuthState = {this.props.updateAuthState} updateUserState = {this.props.updateUserState}/>
+            return <Redirect to="/login" state = {this.props.state} updateAppState = {this.props.updateAppState}/>
         }
         const { username, email, password, password2 } = this.state;
         return (

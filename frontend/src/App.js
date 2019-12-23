@@ -19,7 +19,7 @@ class App extends Component{
 
     componentDidMount() {
         console.log('load current user');
-        this.loadCurrentUser();
+        // this.loadCurrentUser();
     }
 
     loadCurrentUser = () => {
@@ -35,26 +35,16 @@ class App extends Component{
             console.log("successfully logged in user");
 
         }, err => {
-            if (err.response.status === 401) {
+            // if (err.response.status === 401) {
                 this.setState({
                     isLoading: false,
                 });
-            }
+            // }
         })
     };
 
-    updateAuthState = (authState) => {
-        console.log("Update auth state");
-        this.setState({
-            isAuthenticated: authState,
-        })
-    };
-
-    updateUserState = (user) => {
-        console.log("Update user state");
-        this.setState({
-            currentUser: user,
-        })
+    updateAppState = (state) => {
+        this.setState(state)
     };
 
     logout = () => {
@@ -73,9 +63,9 @@ class App extends Component{
                 <NavbarComp state={this.state} logout = {this.logout}/>
                 <div>
                     <Switch>
-                        <PrivateRoute exact path="/" component={WordsList} state={this.state} updateAuthState={this.updateAuthState} updateUserState={this.updateUserState}/>
-                        <PrivateRoute exact path="/login" component={LoginPage} state={this.state} updateAuthState={this.updateAuthState} updateUserState={this.updateUserState}/>
-                        <Route exact path="/register" component={RegisterPage} state={this.state} updateAuthState={this.updateAuthState} updateUserState={this.updateUserState}/>
+                        <PrivateRoute exact path="/" component={WordsList} state={this.state} updateAppState = {this.updateAppState}/>
+                        <PrivateRoute exact path="/login" component={LoginPage} state={this.state} updateAppState = {this.updateAppState}/>
+                        <Route exact path="/register" component={RegisterPage} state={this.state} updateAppState = {this.updateAppState}/>
                     </Switch>
                 </div>
             </Router>

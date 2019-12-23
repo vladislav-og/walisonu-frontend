@@ -1,11 +1,11 @@
 import axios from "axios";
-const conf = {headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
-    }};
+
 
 export function getAllWords(callback, errorCallback){
 
-    axios.get("/api/words", conf)
+    axios.get("/api/words", {headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+        }})
         .then(res => {
             //do something
 
@@ -23,7 +23,9 @@ export function getAllWords(callback, errorCallback){
 
 export function getWord(id, callback, errorCallback){
 
-    axios.get(`/api/words/${id}`, conf)
+    axios.get(`/api/words/${id}`, {headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+        }})
         .then(res => {
             //do something
             if(callback != null){
@@ -45,7 +47,9 @@ export function addWord(name, callback, errorCallback) {
             name: name,
             userId: 1,
             isActive: true
-        }, conf)
+        }, {headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+            }})
         .then(res => {
             //do something
             if (callback != null) {
@@ -62,7 +66,9 @@ export function addWord(name, callback, errorCallback) {
 
 export function deleteWord(wordId, callback, errorCallback){
 
-    axios.delete(`/api/words/${wordId}`, conf)
+    axios.delete(`/api/words/${wordId}`, {headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
+        }})
         .then(res => {
 
             if(callback != null){

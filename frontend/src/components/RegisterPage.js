@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../static/css/pages.css'
-import {Button, Form} from "react-bootstrap";
+import {Alert, Button, Form} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {Redirect} from "react-router-dom";
@@ -19,6 +19,8 @@ class RegisterPage extends Component {
             email: "",
             password1: "",
             password2: "",
+            alert: false,
+            alertMsg: ""
         };
     }
 
@@ -27,7 +29,10 @@ class RegisterPage extends Component {
         const {username, email, password1, password2} = this.state;
 
         if(password1 !== password2) {
-            console.log("Passwords do not match");
+            this.setState({
+                alert: true,
+                alertMsg: "Passwords does not match"
+            })
         } else {
             const newUser = {
                 email: email,
@@ -40,8 +45,12 @@ class RegisterPage extends Component {
                     isAuthenticated: true,
                 })
                 }, err => {
-                alert(err);
-            });
+                    console.log("alert")
+                    this.setState({
+                        alert: true,
+                        alertMsg: "Unsuccessful registration"
+                    })
+                });
         }
     };
 
@@ -54,9 +63,14 @@ class RegisterPage extends Component {
         if(this.state.isAuthenticated) {
             return <Redirect to="/login" state = {this.props.state} updateAppState = {this.props.updateAppState}/>
         }
-        const { username, email, password, password2 } = this.state;
+        const { username, email, password, password2, alert, alertMsg } = this.state;
         return (
             <div className="form">
+                {alert &&
+                <Alert key={1} variant="danger">
+                    {alertMsg}
+                </Alert>
+                }
                 <Form onSubmit={this.onSubmit}>
                     <Form.Group>
                         <Form.Label >Username</Form.Label>

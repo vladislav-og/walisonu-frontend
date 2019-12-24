@@ -1,5 +1,5 @@
 .word-card {
-    margin: .5rem;
+    margin: .5rem 0 .5rem 0;
     height: 40%;
 }
 
@@ -9,13 +9,27 @@
     padding: 1.25rem;
     horizontal-align: baseline;
 }
-/*.word ,*/
-/*.show-synonym {*/
-/*    margin: .5rem;*/
-/*    display: inline-block;*/
-/*    vertical-align: baseline;*/
-/*}*/
 
 .show-synonym {
     /*font-size: 2rem;*/
+}
+
+.input-cal {
+    width: 50%;
+}
+
+.synonym-col {
+    width: 33%;
+}
+@media only screen and (max-width: 720px) {
+    .synonym-col {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .form {
+        max-width: 90%;
+        box-shadow: none;
+    }
 }

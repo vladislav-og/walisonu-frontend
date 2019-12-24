@@ -100,7 +100,7 @@ class Word extends Component {
                                 {
                                     this.props.state.currentUser != null && this.props.state.currentUser.role === "ADMIN" &&
                                     <Button style={{
-                                        float: "inline-end",
+                                        float: "right",
                                         margin: "0.2rem"
                                     }} variant="danger" size="sm" onClick={this.props.doWordDelete}>Delete
                                     </Button>
@@ -123,12 +123,12 @@ class Word extends Component {
                     <ListGroup.Item>
                         <Form>
                             <Form.Group as={Row}>
-                                <Col sm="6">
+                                <Col className="input-col">
                                     <Form.Control value={this.state.inputSynonym}
                                                   onChange={e => this.updateInputValue(e)}
                                                   type="text" placeholder="Enter synonym"/>
                                 </Col>
-                                <Col>
+                                <Col className="input-col">
                                     <Button type="submit" variant="primary" onClick={this.addSynonym}>Submit</Button>
                                 </Col>
                             </Form.Group>

@@ -74,17 +74,17 @@ class WordsList extends Component {
     render() {
 
         return (
-            <Container style={{width: '50rem'}}>
+            <Container className="words">
                 {
                     this.props.state.isAuthenticated &&
                     <Form style={{paddingTop: '2rem'}} onSubmit={this.addWord}>
                         <Form.Group as={Row}>
-                            <Col sm="6">
+                            <Col className="input-col">
                                 <Form.Control value={this.state.inputWord}
                                               onChange={e => this.updateInputValue(e)}
                                               type="text" placeholder="Enter new word"/>
                             </Col>
-                            <Col>
+                            <Col className="input-col">
                                 <Button type="submit" variant="primary" onClick={this.addWord}>Submit</Button>
                             </Col>
                         </Form.Group>

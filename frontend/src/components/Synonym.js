@@ -35,15 +35,15 @@ class Synonym extends Component {
                 <Fragment>
                     <ListGroup.Item>
                         <Row>
-                            <Col sm="2">
+                            <Col className="synonym-col">
                                 {this.props.synonym.synonym}
                             </Col>
                             {this.props.state.currentUser.role === "ADMIN" &&
                                 <Fragment>
-                                    <Col sm="2">
+                                    <Col className="synonym-col">
                                         <Button type="submit" variant="danger" onClick={() => this.props.deleteSynonym(this.props.synonym.synonymId)}>Delete</Button>
                                     </Col>
-                                    <Col sm="2">
+                                    <Col className="synonym-col">
                                         <Button type="submit" variant="info" onClick={this.toggleUpdate}>Update</Button>
                                     </Col>
                                 </Fragment>

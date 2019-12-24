@@ -5,7 +5,6 @@ import LoginPage from './components/LoginPage'
 import RegisterPage from './components/RegisterPage'
 import NavbarComp from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute'
-import {getCurrentUser} from './utils/authRequests'
 
 class App extends Component{
     constructor(props) {

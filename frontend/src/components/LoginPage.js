@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link, Redirect } from "react-router-dom"
-import {Form, Button} from "react-bootstrap";
+import {Form, Button, Alert} from "react-bootstrap";
 import PropTypes from "prop-types";
 import '../static/css/pages.css'
 import {login} from '../utils/authRequests'
@@ -18,7 +18,8 @@ class LoginPage extends Component {
             currentUser: this.props.state.currentUser,
             isLoading: this.props.state.isLoading,
             email: "",
-            password: ""
+            password: "",
+            alert: false
         };
     }
 
@@ -34,7 +35,9 @@ class LoginPage extends Component {
                 isAuthenticated: true,
             });
         }, err => {
-            alert(err);
+            this.setState({
+                alert: true
+            })
         });
     };
 
@@ -49,6 +52,11 @@ class LoginPage extends Component {
         const {email, password } = this.state;
         return (
             <div className="form">
+                {this.state.alert &&
+                <Alert key={1} variant="danger">
+                    Please check email or password
+                </Alert>
+                }
                 <Form onSubmit={this.onSubmit}>
                     <Form.Group>
                         <Form.Label >Email</Form.Label>

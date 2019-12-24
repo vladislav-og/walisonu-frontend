@@ -17,32 +17,6 @@ class App extends Component{
         };
     }
 
-    componentDidMount() {
-        console.log('load current user');
-        // this.loadCurrentUser();
-    }
-
-    loadCurrentUser = () => {
-        this.setState({
-            isLoading: true
-        });
-        getCurrentUser(res => {
-            this.setState({
-                isLoading: false,
-                currentUser: res.data,
-                isAuthenticated: true,
-            });
-            console.log("successfully logged in user");
-
-        }, err => {
-            // if (err.response.status === 401) {
-                this.setState({
-                    isLoading: false,
-                });
-            // }
-        })
-    };
-
     updateAppState = (state) => {
         this.setState(state)
     };

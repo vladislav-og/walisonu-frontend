@@ -7,14 +7,12 @@ export function getAllWords(callback, errorCallback){
             'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
         }})
         .then(res => {
-            //do something
 
             if(callback != null){
                 callback(res);
             }
         })
         .catch(err => {
-            // catch error
             if(errorCallback != null){
                 errorCallback(err);
             }
@@ -27,13 +25,11 @@ export function getWord(id, callback, errorCallback){
             'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
         }})
         .then(res => {
-            //do something
             if(callback != null){
                 callback(res);
             }
         })
         .catch(err => {
-            // catch error
             if(errorCallback != null){
                 errorCallback(err);
             }
@@ -51,13 +47,11 @@ export function addWord(name, callback, errorCallback) {
                 'Authorization': 'Bearer ' + localStorage.getItem("ACCESS_TOKEN")
             }})
         .then(res => {
-            //do something
             if (callback != null) {
                 callback(res);
             }
         })
         .catch(err => {
-            // catch error
             if (errorCallback != null) {
                 errorCallback(err);
             }

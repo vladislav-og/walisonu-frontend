@@ -36,7 +36,6 @@ class WordsList extends Component {
 
     getWords = (e) => {
         getAllWords(res => {
-            console.log('get all new words');
             this.setState({words: res.data});
         }, (err) => {
             //error

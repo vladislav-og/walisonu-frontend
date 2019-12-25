@@ -40,12 +40,10 @@ class RegisterPage extends Component {
             };
 
             register(newUser, res => {
-                console.log("successfully registered new User");
                 this.setState({
                     isAuthenticated: true,
                 })
                 }, err => {
-                    console.log("alert")
                     this.setState({
                         alert: true,
                         alertMsg: "Unsuccessful registration"

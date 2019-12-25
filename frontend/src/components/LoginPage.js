@@ -25,7 +25,6 @@ class LoginPage extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        console.log("submit login form");
         login({email: this.state.email, password:this.state.password}, res => {
             localStorage.setItem("ACCESS_TOKEN", res.data.token);
 
@@ -44,9 +43,7 @@ class LoginPage extends Component {
     onChange = e => this.setState({[e.target.name]: e.target.value});
 
     render() {
-        console.log('Load Login Page');
         if(this.props.state.isAuthenticated) {
-            console.log("redirect to HomePage");
             return <Redirect to="/"/>
         }
         const {email, password } = this.state;

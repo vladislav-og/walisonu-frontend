@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Button, NavItem} from "react-bootstrap";
 
-//import * as requests from '../utils/requests';
 
 class NavbarComp extends Component {
   constructor(props) {

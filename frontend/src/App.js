@@ -5,6 +5,7 @@ import LoginPage from './components/LoginPage'
 import RegisterPage from './components/RegisterPage'
 import NavbarComp from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute'
+import {logout} from './utils/authRequests';
 
 class App extends Component{
     constructor(props) {
@@ -21,8 +22,8 @@ class App extends Component{
     };
 
     logout = () => {
+        logout();
         localStorage.removeItem("ACCESS_TOKEN");
-        console.log("logout")
         this.setState({
             currentUser: null,
             isAuthenticated: false,
